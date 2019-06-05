@@ -101,7 +101,9 @@
 }
  .card-body{
 	flex-grow: 0.7;
-	padding: 0;
+	padding: 0.5em 0 0 0.5em; 
+	
+	
 	text-align: left;
 	
 }
@@ -114,8 +116,10 @@
 }
 .one > .card-body{
 	text-align: center;
+	padding-left: 0;
 }
 .card-img-overlay{
 	    color: #000;
 	    text-align: left;
+	    	padding: 0.5em 0 0 0.5em; 
 }
