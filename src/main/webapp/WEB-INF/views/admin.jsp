@@ -53,7 +53,7 @@
 					</div>
 				</li>
 			</ul>
-			<div class="content border border-primary col-sm-9">
+			<div class="content border border-success col-sm-9">
 				<div class="swiper-paging">
 					<div class="swiper-pagination"></div>
 				</div>
@@ -162,6 +162,54 @@
 											
 										</div>
 									</div>
+										<div class="card card-img">
+										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
+										<div class="card-img-overlay">
+											<h4 class="card-title">John Doe</h4>
+											<p class="card-text">Some example text.</p>
+											
+										</div>
+									</div>
+									<div class="card card-img">
+										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
+										<div class="card-img-overlay">
+											<h4 class="card-title">John Doe</h4>
+											<p class="card-text">Some example text.</p>
+											
+										</div>
+									</div>
+									<div class="card card-img">
+										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
+										<div class="card-img-overlay">
+											<h4 class="card-title">John Doe</h4>
+											<p class="card-text">Some example text.</p>
+											
+										</div>
+									</div>
+										<div class="card card-img">
+										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
+										<div class="card-img-overlay">
+											<h4 class="card-title">John Doe</h4>
+											<p class="card-text">Some example text.</p>
+											
+										</div>
+									</div>
+									<div class="card card-img">
+										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
+										<div class="card-img-overlay">
+											<h4 class="card-title">John Doe</h4>
+											<p class="card-text">Some example text.</p>
+											
+										</div>
+									</div>
+									<div class="card card-img">
+										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
+										<div class="card-img-overlay">
+											<h4 class="card-title">John Doe</h4>
+											<p class="card-text">Some example text.</p>
+											
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="swiper-slide">
@@ -220,6 +268,7 @@
 			slidesPerView : 1,
 			spaceBetween : 30,
 			loop : true,
+			autoHeight :  true ,
 			pagination : { // 페이징
 				el : '.swiper-pagination',
 				clickable : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
