@@ -1,5 +1,6 @@
 package com.around.admin.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,9 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.around.admin.model.Board;
 import com.around.admin.model.Notice;
 import com.around.admin.model.Question;
+import com.around.admin.model.Report;
 import com.around.admin.repository.BoardRepository;
+import com.around.admin.repository.HeartRepository;
 import com.around.admin.repository.NoticeRepository;
 import com.around.admin.repository.QuestionRepository;
+import com.around.admin.repository.ReportRepository;
+import com.around.admin.service.BoardService;
 
 @Controller
 @RequestMapping("/admin")
@@ -32,14 +37,36 @@ public class AdminController {
 	@Autowired
 	NoticeRepository noticeRepository;
 	
+	@Autowired
+	ReportRepository reportRepository;
+	@Autowired
+	HeartRepository heartRepository;
+	@Autowired
+	BoardService boardService;
+	
 	@GetMapping("/")
-	public String home() {
+	public String home(Model model) {
+		
+		List<Board> webpageList =boardService.webPageList(1);
+		model.addAttribute("webpagelist", webpageList);
 		return "admin";
 	}
 
 	@GetMapping("/report/find")
 	public @ResponseBody List<Board> reportFind(Model model) {
-		List<Board> boards = boardRepository.findByReportCountNotOrderByBoardCreateDateDesc(1);
+		List<Integer> reportList = reportRepository.findReportList();
+		List<Board> boards = new ArrayList<Board>();
+		for(int i: reportList) {
+			
+			Optional<Board> boardO = boardRepository.findById(i);
+			Board board = new Board();
+			if(boardO.isPresent()) {
+				board = boardO.get();
+				int reportCount= reportRepository.findReportCount(i);
+				board.setReportCount(reportCount);
+			}
+			boards.add(board);
+		}
 		model.addAttribute("reportList", boards);
 		return boards;
 	}

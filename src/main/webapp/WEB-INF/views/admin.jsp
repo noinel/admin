@@ -15,6 +15,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="/css/style.css" />
+
 <title>관리자!</title>
 </head>
 <body>
@@ -48,7 +49,7 @@
 					<button type="button" class="col-sm-12 btn btn-success"
 						data-toggle="collapse" data-target="#demo3">추천글 작성</button>
 					<div id="demo3" class="col-sm-12 collapse btn-group-vertical">
-						<button type="button" class="col-sm-12 btn btn-outline-success">웹
+						<button type="button" onclick="page()" class="col-sm-12 btn btn-outline-success">웹
 							메인페이지 관리</button>
 					</div>
 				</li>
@@ -61,192 +62,21 @@
 					<div class="swiper-container">
 						<!-- Add Pagination -->
 						<div class="swiper-wrapper">
-							<div class="swiper-slide">
+							<div class="swiper-slide slide-1">
+								
+							</div>
+							<div class="swiper-slide slide-2">
 								<div class="cardcase">
-									<div class="card one">
-										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
-										<div class="card-body">
-											<h4 class="card-title">John Doe</h4>
-											<p class="card-text">Some example text.</p>
-											
-										</div>
-									</div>
-									<div class="card two">
-										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
-										<div class="card-body">
-											<h4 class="card-title">John Doe</h4>
-											<p class="card-text">Some example text.</p>
-											
-										</div>
-									</div>
-									<div class="card three">
-										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
-										<div class="card-body">
-											<h4 class="card-title">John Doe</h4>
-											<p class="card-text">Some example text.</p>
-											
-										</div>
-									</div>
-									<div class="card card-type">
-										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
-										<div class="card-body">
-											<h4 class="card-title">John Doe</h4>
-											<p class="card-text">Some example text.</p>
-											
-										</div>
-									</div>
 									
-									<div class="card card-type">
-										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
-										<div class="card-body">
-											<h4 class="card-title">John Doe</h4>
-											<p class="card-text">Some example text.</p>
-											
-										</div>
-									</div>
-									
-									<div class="card card-img">
-										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
-										<div class="card-img-overlay">
-											<h4 class="card-title">John Doe</h4>
-											<p class="card-text">Some example text.</p>
-											
-										</div>
-									</div>
-									
-									<div class="card card-img">
-										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
-										<div class="card-img-overlay">
-											<h4 class="card-title">John Doe</h4>
-											<p class="card-text">Some example text.</p>
-											
-										</div>
-									</div>
-									<div class="card card-img">
-										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
-										<div class="card-img-overlay">
-											<h4 class="card-title">John Doe</h4>
-											<p class="card-text">Some example text.</p>
-											
-										</div>
-									</div>
-									<div class="card card-img">
-										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
-										<div class="card-img-overlay">
-											<h4 class="card-title">John Doe</h4>
-											<p class="card-text">Some example text.</p>
-											
-										</div>
-									</div>
-									<div class="card card-img">
-										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
-										<div class="card-img-overlay">
-											<h4 class="card-title">John Doe</h4>
-											<p class="card-text">Some example text.</p>
-											
-										</div>
-									</div>
-									<div class="card card-img">
-										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
-										<div class="card-img-overlay">
-											<h4 class="card-title">John Doe</h4>
-											<p class="card-text">Some example text.</p>
-											
-										</div>
-									</div>
-									<div class="card card-img">
-										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
-										<div class="card-img-overlay">
-											<h4 class="card-title">John Doe</h4>
-											<p class="card-text">Some example text.</p>
-											
-										</div>
-									</div>
-										<div class="card card-img">
-										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
-										<div class="card-img-overlay">
-											<h4 class="card-title">John Doe</h4>
-											<p class="card-text">Some example text.</p>
-											
-										</div>
-									</div>
-									<div class="card card-img">
-										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
-										<div class="card-img-overlay">
-											<h4 class="card-title">John Doe</h4>
-											<p class="card-text">Some example text.</p>
-											
-										</div>
-									</div>
-									<div class="card card-img">
-										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
-										<div class="card-img-overlay">
-											<h4 class="card-title">John Doe</h4>
-											<p class="card-text">Some example text.</p>
-											
-										</div>
-									</div>
-										<div class="card card-img">
-										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
-										<div class="card-img-overlay">
-											<h4 class="card-title">John Doe</h4>
-											<p class="card-text">Some example text.</p>
-											
-										</div>
-									</div>
-									<div class="card card-img">
-										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
-										<div class="card-img-overlay">
-											<h4 class="card-title">John Doe</h4>
-											<p class="card-text">Some example text.</p>
-											
-										</div>
-									</div>
-									<div class="card card-img">
-										<img class="card-img-top" src="/image/1.jpg" alt="Card image">
-										<div class="card-img-overlay">
-											<h4 class="card-title">John Doe</h4>
-											<p class="card-text">Some example text.</p>
-											
-										</div>
-									</div>
 								</div>
 							</div>
-							<div class="swiper-slide">
-								<div class="cardcase">
-									<div class="card 1st">
-										<img class="card-img-top" src="/image/10.jpg" alt="Card image">
-										<div class="card-body">
-											<h4 class="card-title">갓재원</h4>
-											<p class="card-text">Some example text.</p>
-											<a href="#" class="btn btn-primary">See Profile</a>
-										</div>
-									</div>
-									<div class="card 2nd">
-										<img class="card-img-top" src="/image/10.jpg" alt="Card image">
-										<div class="card-body">
-											<h4 class="card-title">갓재원</h4>
-											<p class="card-text">Some example text.</p>
-											<a href="#" class="btn btn-primary">See Profile</a>
-										</div>
-									</div>
-									<div class="card 3rd">
-										<img class="card-img-top" src="/image/10.jpg" alt="Card image">
-										<div class="card-body">
-											<h4 class="card-title">갓재원</h4>
-											<p class="card-text">Some example text.</p>
-											<a href="#" class="btn btn-primary">See Profile</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide">Slide 3</div>
-							<div class="swiper-slide">Slide 4</div>
-							<div class="swiper-slide">Slide 5</div>
-							<div class="swiper-slide">Slide 6</div>
-							<div class="swiper-slide">Slide 7</div>
-							<div class="swiper-slide">Slide 8</div>
-							<div class="swiper-slide">Slide 9</div>
+							<div class="swiper-slide slide-3">Slide 3</div>
+							<div class="swiper-slide slide-4">Slide 4</div>
+							<div class="swiper-slide slide-5">Slide 5</div>
+							<div class="swiper-slide slide-6">Slide 6</div>
+							<div class="swiper-slide slide-7">Slide 7</div>
+							<div class="swiper-slide slide-8">Slide 8</div>
+							<div class="swiper-slide slide-9">Slide 9</div>
 
 						</div>
 
@@ -258,6 +88,8 @@
 			</div>
 		</div>
 	</div>
+	
+	
 	<!-- Swiper JS -->
 	<script src="/js/swiper.min.js"></script>
 
@@ -278,6 +110,59 @@
 				},
 			},
 		});
+	</script>
+	<script type="text/javascript">
+	function page() {
+		for (i = 1; i < 11; i++) {
+
+			let slide = document.querySelectorAll(".slide-" + i);
+			console.log(slide.length);
+
+			for (f = 0; f < slide.length; f++) {
+
+				slide.item(f).innerHTML = "";
+				let cardcase = document.createElement("div");
+				cardcase.className = "cardcase";
+				slide.item(f).append(cardcase);
+				console.log(cardcase);
+				main(i, cardcase);
+			}
+
+		}
+	}
+	function main(num, cardcase) {
+		let c = 0;
+		<c:forEach var="item" items="${webpagelist}">
+		
+		if (c == 0) {
+			
+			let card = document.createElement("div");
+			card.className = "card card-one";
+			card.innerHTML = '<img class="card-img-top" src="/image/1.jpg" alt="Card image"><div class="card-body"><h4 class="card-title">${item.boardContent}</h4></div>';
+			cardcase.append(card);
+		} else if (c < 6) {
+			let card = document.createElement("div");
+			card.className = "card card-type";
+			card.innerHTML = '<img class="card-img-top" src="/image/1.jpg" alt="Card image"><div class="card-body"><h4 class="card-title">${item.boardContent}</h4></div>';
+			cardcase.append(card);
+		} else {
+			let card = document.createElement("div");
+			card.className = "card card-img";
+			card.innerHTML = '<img class="card-img-top" src="/image/1.jpg" alt="Card image"><div class="card-img-overlay"><p class="card-text">${item.boardContent}</p></div>';
+			cardcase.append(card);
+
+		}
+		c += 1;
+		</c:forEach>	
+	}
+		
+		
+		
+		
+			 
+
+
+
 	</script>
 </body>
 

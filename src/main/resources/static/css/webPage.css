@@ -60,36 +60,13 @@
 	width:auto;
 	display:grid;
 	grid-template-columns: repeat(3, 1fr);
-	
+	  grid-template-rows: repeat(10, 1fr);	
 	position: relative;
 }
-.slide-one{
-  grid-template-rows: repeat(8, 1fr);
-}
-.slide-two{
-  grid-template-rows: repeat(10, 1fr);
-}
-.slide-three{
-  grid-template-rows: repeat(6, 1fr);
-}
-.slide-four{
-  grid-template-rows: repeat(11, 1fr);
-}
-.slide-five{
-  grid-template-rows: repeat(15, 1fr);
-}
-.slide-six{
-  grid-template-rows: repeat(16, 1fr);
-}
-.slide-seven{
-  grid-template-rows: repeat(8, 1fr);
-}
-.slide-eight{
-  grid-template-rows: repeat(6, 1fr);
-}
-.slide-nine{
-  grid-template-rows: repeat(9, 1fr);
-}
+
+
+
+
 .card{
 	width:100%;
 	
@@ -113,12 +90,12 @@
 }
 
 
-.one{
+.card-one{
 	grid-column : 1/2 span;
 	grid-row : 1/2 span;
 	
 }
-.one > .card-body{
+.card-one > .card-body{
 	text-align: center;
 	padding-left: 0;
 }

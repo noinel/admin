@@ -7,6 +7,8 @@ public class HeartCountDTO implements Comparable<HeartCountDTO>{
 	private int num;
 	private int heartCount;
 	
+	
+	
 	@Override
 	public int compareTo(HeartCountDTO hd) {
 		int count1 = this.heartCount;

@@ -28,10 +28,10 @@ public class Heart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int heartNum;
 
-	@JsonIgnoreProperties({ "bookMark", "subscribe", "userGender", "userAge", "userSearchRegion", "userRegion",
-			"userEmail", "userSearchMinAge", "userSearchMaxAge", "userActivate", "userCreateDate", "userUpdateDate",
-			"heart", "reply", "board" })
 	@ManyToOne
+	@JsonIgnoreProperties({ "bookMark", "subscribe", "userGender", "userAge", "userSearchRegion", "userRegion",
+		"userEmail", "userSearchMinAge", "userSearchMaxAge", "userActivate", "userCreateDate", "userUpdateDate",
+		"heart", "reply", "board" ,"report"})
 	@JoinColumn(name = "userNum")
 	private Users user;
 

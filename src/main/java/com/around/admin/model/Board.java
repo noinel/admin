@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -39,10 +40,10 @@ public class Board {
 	@CreationTimestamp
 	private LocalDate boardUpdateDate;
 
-	@JsonIgnoreProperties({ "bookMark", "subscribe", "userGender", "userAge", "userSearchRegion", "userRegion",
-			"userEmail", "userSearchMinAge", "userSearchMaxAge", "userActivate", "userCreateDate", "userUpdateDate",
-			"heart", "reply", "board" })
 	@ManyToOne
+	@JsonIgnoreProperties({ "bookMark", "subscribe", "userGender", "userAge", "userSearchRegion", "userRegion",
+		"userEmail", "userSearchMinAge", "userSearchMaxAge", "userActivate", "userCreateDate", "userUpdateDate",
+		"heart", "reply", "board" ,"report"})
 	@JoinColumn(name = "userNum")
 	private Users user;
 
@@ -67,7 +68,11 @@ public class Board {
 	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
 	private List<AttachFile> attachFile;
 
+	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+	private List<Report> report;
+	
 	private String attachSearch;
 	
+	@Transient
 	private int reportCount;
 }

@@ -47,10 +47,10 @@ public class Reply {
 	@JoinColumn(name = "toReplyNum")
 	private Reply toReply;
 
-	@JsonIgnoreProperties({ "bookMark", "subscribe", "userGender", "userAge", "userSearchRegion", "userRegion",
-			"userEmail", "userSearchMinAge", "userSearchMaxAge", "userActivate", "userCreateDate", "userUpdateDate",
-			"heart", "reply", "board" })
 	@ManyToOne
+	@JsonIgnoreProperties({ "bookMark", "subscribe", "userGender", "userAge", "userSearchRegion", "userRegion",
+		"userEmail", "userSearchMinAge", "userSearchMaxAge", "userActivate", "userCreateDate", "userUpdateDate",
+		"heart", "reply", "board" ,"report"})
 	@JoinColumn(name = "userNum")
 	private Users user;
 
