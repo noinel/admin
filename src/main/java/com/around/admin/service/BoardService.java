@@ -22,7 +22,7 @@ public class BoardService {
 	
 	public List<Board> webPageList(int num){
 		List<Integer> popList = heartRepository.findCountPopularBoard(30);
-		System.out.println(";"+popList);
+		System.out.println("poplist"+popList);
 		//List<Board> boards = boardRepository.findAllById(popList);
 		List<Board> boards = new ArrayList<>();
 		for(int i : popList) {
