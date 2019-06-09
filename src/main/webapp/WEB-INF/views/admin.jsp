@@ -113,8 +113,8 @@
 	</script>
 	<!-- 신고 페이징 -->
 	<script type="text/javascript">
-		function questionPaging(page){
-			let url = '/admin/question/findpage/'+page;
+		function reportPaging(page){
+			let url = '/admin/report/findpage/'+page;
 			fetch(url, {
 				
 					method:"GET",
@@ -125,17 +125,17 @@
 					return res.json();
 				}).then(function(result){
 					console.log(result)
-					questionPagePrint(result);					
+					reportPagePrint(result);					
 				})	
 		}
-		function questionPagePrint(result){
+		function reportPagePrint(result){
 			let content = document.querySelector('.content');
 			content.className = 'content border border-danger col-sm-9';
 			content.innerHTML = '<div class="list"><h1 class="text-center text-danger">알림목록</h1><ul class="list-group"></ul><ul class="pagination m-5 justify-content-center"></ul></div>';
 
 			let create = document.createElement("div");
-			create.className = 'question-write';
-			create.innerHTML = '<input class="question-title form-control-inline" type="text" name="title" placeholder="제목" required/><input class="form-control-inline question-content" type="text" name="content" placeholder="본문" required/><button class="btn btn-outline-danger col-sm-8" onclick="questionWrite()">작성</button>';
+			create.className = 'report-write';
+			create.innerHTML = '<input class="report-title form-control-inline" type="text" name="title" placeholder="제목" required/><input class="form-control-inline report-content" type="text" name="content" placeholder="본문" required/><button class="btn btn-outline-danger col-sm-8" onclick="reportWrite()">작성</button>';
 			content.append(create);
 			
 			let list = document.querySelector('.list-group');
@@ -164,7 +164,7 @@
 			}else{
 				prev.className = "page-item ";
 			}
-			prev.innerHTML = '<a class="page-link" onclick="questionPaging('+(result.page-1)+')" href="#">Previous</a>'
+			prev.innerHTML = '<a class="page-link" onclick="reportPaging('+(result.page-1)+')" href="#">Previous</a>'
 			paging.append(prev);
 	
 			
@@ -175,7 +175,7 @@
 				if(i === result.page){
 					page.className = "page-item active";
 				}
-				page.innerHTML = '<a class="page-link " onclick="questionPaging('+i+')" href="#">'+i+'</a>'
+				page.innerHTML = '<a class="page-link " onclick="reportPaging('+i+')" href="#">'+i+'</a>'
 				paging.append(page);
 			}
 			let next = document.createElement("li");
@@ -185,7 +185,7 @@
 				next.className = "page-item disabled";
 			}
 			
-			next.innerHTML = '<a class="page-link" onclick="questionPaging('+(result.page+1)+')" href="#">Next</a>'
+			next.innerHTML = '<a class="page-link" onclick="reportPaging('+(result.page+1)+')" href="#">Next</a>'
 			paging.append(next);
 			
 		}
