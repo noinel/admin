@@ -77,6 +77,8 @@ public class Board implements Comparable<Board>{
 	@Transient
 	private int reportCount;
 	
+	private int boardActivate;
+	
 	@Override
 	public int compareTo(Board board) {
 			long time1 = Integer.parseInt(this.boardCreateDate.toString().replaceAll("-", ""));
