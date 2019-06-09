@@ -1,0 +1,9 @@
+.border-primary .list-group-item:nth-child(even) {
+	color: #004085;
+	background-color: #b8daff;
+}
+
+.border-danger .list-group-item:nth-child(even) {
+	color: #721c24;
+	background-color: #f5c6cb;
+}

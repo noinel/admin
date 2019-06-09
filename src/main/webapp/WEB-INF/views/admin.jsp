@@ -24,16 +24,16 @@
 		<p>테스트용 화면 입니다.</p>
 	</div>
 	<div class="container">
-		<div class="row">
+		<div class="pb-5 row">
 
 			<ul id="nav" class="sticky nav flex-column col-sm-3">
 				<li class="nav-item">
 					<button type="button" class="col-sm-12 btn btn-primary"
 						data-toggle="collapse" data-target="#demo1">문의 관리</button>
 					<div id="demo1" class="col-sm-12 collapse btn-group-vertical show">
-						<button type="button" class=" col-sm-12 btn btn-outline-primary">신고
+						<button type="button" onclick="report()" class=" col-sm-12 btn btn-outline-primary">신고
 							게시글 관리</button>
-						<button type="button" class=" col-sm-12 btn btn-outline-primary">문의목록
+						<button type="button" onclick="question()" class=" col-sm-12 btn btn-outline-primary">문의목록
 							관리</button>
 					</div>
 				</li>
@@ -41,7 +41,7 @@
 					<button type="button" class="col-sm-12 btn btn-danger"
 						data-toggle="collapse" data-target="#demo2">어플관리</button>
 					<div id="demo2" class="col-sm-12 collapse btn-group-vertical">
-						<button type="button" class=" col-sm-12 btn btn-outline-danger">알림
+						<button type="button" onclick="notice()" class=" col-sm-12 btn btn-outline-danger">알림
 							발송</button>
 					</div>
 				</li>
@@ -54,24 +54,70 @@
 					</div>
 				</li>
 			</ul>
-			<div class="content border  col-sm-9">
-				
+			<div class="mb-5 content border  col-sm-9">
+				<div>
+					<ul class="list-group">
+						<li class="list-group-item list-group-item-action">Success
+							item</li>
+						<li class="list-group-item list-group-item-action ">Primary
+							item</li>
+						<li class="list-group-item list-group-item-action">Info item</li>
+						<li class="list-group-item list-group-item-action ">Primary
+							item</li>
+						<li class="list-group-item list-group-item-action">Danger
+							item</li>
+						<li class="list-group-item list-group-item-action ">Primary
+							item</li>
+						<li class="list-group-item list-group-item-action">Dark item</li>
+						<li class="list-group-item list-group-item-action ">Primary</li>
+						<li class="list-group-item list-group-item-action">Dark item</li>
+						<li class="list-group-item list-group-item-action ">Primary</li>
+					</ul>
+					<ul class=" pagination justify-content-center">
+						<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+						<li class="page-item"><a class="page-link" href="#">1</a></li>
+						<li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item"><a class="page-link" href="#">Next</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
+		function report(){
+			let content = document.querySelector('.content');
+			content.className = 'content border border-primary col-sm-9';
+			//content.innerHTML = '';
+			}
+	</script>
+	<script type="text/javascript">
+		function question(){
+			let content = document.querySelector('.content');
+			content.className = 'content border border-primary col-sm-9';
+			//content.innerHTML = '';
+			}
+	</script>
+	<script type="text/javascript">
+		function notice(){
+			let content = document.querySelector('.content');
+			content.className = 'content border border-danger col-sm-9';
+			//content.innerHTML = '';
+			}
+	</script>
+	<script type="text/javascript">
 		function page() {
 			let content = document.querySelector('.content');
 			content.className = 'content border border-success col-sm-9';
-			content.innerHTML='<div class="swiper-paging"><div class="swiper-pagination"></div></div><div class="swiper-case"><div class="swiper-container"><div class="swiper-wrapper"><div class="swiper-slide slide-1"></div><div class="swiper-slide slide-2"></div><div class="swiper-slide slide-3"></div><div class="swiper-slide slide-4"></div><div class="swiper-slide slide-5"></div><div class="swiper-slide slide-6"></div><div class="swiper-slide slide-7"></div><div class="swiper-slide slide-8"></div><div class="swiper-slide slide-9"></div></div></div></div>'
-			
+			content.innerHTML = '<div class="swiper-paging"><div class="swiper-pagination"></div></div><div class="swiper-case"><div class="swiper-container"><div class="swiper-wrapper"><div class="swiper-slide slide-1"></div><div class="swiper-slide slide-2"></div><div class="swiper-slide slide-3"></div><div class="swiper-slide slide-4"></div><div class="swiper-slide slide-5"></div><div class="swiper-slide slide-6"></div><div class="swiper-slide slide-7"></div><div class="swiper-slide slide-8"></div><div class="swiper-slide slide-9"></div></div></div></div>'
+
 			for (i = 1; i < 11; i++) {
-				
+
 				let slide = document.querySelectorAll(".slide-" + i);
 				console.log(slide.length);
 
 				for (f = 0; f < slide.length; f++) {
-					
+
 					slide.item(f).innerHTML = "";
 					let cardcase = document.createElement("div");
 					cardcase.className = "cardcase";
@@ -91,8 +137,8 @@
 					el : '.swiper-pagination',
 					clickable : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
 					renderBullet : function(index, className) {
-						return '<span class="' + className + '">' + (name[index])
-								+ '</span>';
+						return '<span class="' + className + '">'
+								+ (name[index]) + '</span>';
 					},
 				},
 			});
@@ -123,9 +169,9 @@
 			</c:forEach>
 		}
 	</script>
-		<!-- Swiper JS -->
+	<!-- Swiper JS -->
 	<script src="/js/swiper.min.js"></script>
-	
+
 </body>
 
 </html>
