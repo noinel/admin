@@ -25,7 +25,7 @@
 	</div>
 	<div class="container">
 		<div class="pb-5 row">
-	
+
 
 			<ul id="nav" class="sticky nav flex-column col-sm-3">
 				<li class="nav-item">
@@ -38,7 +38,7 @@
 							class=" col-sm-12 btn btn-outline-primary">문의목록 관리</button>
 					</div>
 				</li>
-				
+
 				<li class="nav-item">
 					<button type="button" class="col-sm-12 btn btn-danger"
 						data-toggle="collapse" data-target="#demo2">어플관리</button>
@@ -57,12 +57,10 @@
 				</li>
 			</ul>
 
-			<div class="mb-5 content border text-align col-sm-9">
-				
-			</div>
+			<div class="mb-5 content border text-align col-sm-9"></div>
 		</div>
 	</div>
-	
+
 	<!-- 신고 스크립트 -->
 	<script type="text/javascript">
 		function report(){
@@ -113,6 +111,86 @@
 				paging.append(next);
 			}
 	</script>
+	<!-- 신고 페이징 -->
+	<script type="text/javascript">
+		function questionPaging(page){
+			let url = '/admin/question/findpage/'+page;
+			fetch(url, {
+				
+					method:"GET",
+					dataType: "json",
+							
+				})
+				.then(function(res){					
+					return res.json();
+				}).then(function(result){
+					console.log(result)
+					questionPagePrint(result);					
+				})	
+		}
+		function questionPagePrint(result){
+			let content = document.querySelector('.content');
+			content.className = 'content border border-danger col-sm-9';
+			content.innerHTML = '<div class="list"><h1 class="text-center text-danger">알림목록</h1><ul class="list-group"></ul><ul class="pagination m-5 justify-content-center"></ul></div>';
+
+			let create = document.createElement("div");
+			create.className = 'question-write';
+			create.innerHTML = '<input class="question-title form-control-inline" type="text" name="title" placeholder="제목" required/><input class="form-control-inline question-content" type="text" name="content" placeholder="본문" required/><button class="btn btn-outline-danger col-sm-8" onclick="questionWrite()">작성</button>';
+			content.append(create);
+			
+			let list = document.querySelector('.list-group');
+			let paging = document.querySelector('.pagination');
+			
+			
+			for(f in result.list){
+				item = document.createElement("li");
+				item.className = "list-group-item list-group-item-action";
+				item.innerHTML = '알림 번호 : '+result.list[f].id+' 알림 제목 : '+result.list[f].title+' 본문 : '+result.list[f].content;
+				list.append(item);
+			}
+			
+		
+			if(result.maxPage === 0){
+				item = document.createElement("h1");
+				item.className = "text-center text-danger";
+				item.innerHTML = '작성된 알림이 없습니다.';
+				list.append(item);
+			}
+			
+			let prev = document.createElement("li");
+			
+			if(result.page === 1){
+				prev.className = "page-item disabled";
+			}else{
+				prev.className = "page-item ";
+			}
+			prev.innerHTML = '<a class="page-link" onclick="questionPaging('+(result.page-1)+')" href="#">Previous</a>'
+			paging.append(prev);
+	
+			
+				
+			for(i=1; i<result.maxPage+1; i++){
+				let page = document.createElement("li");
+				page.className = "page-item";
+				if(i === result.page){
+					page.className = "page-item active";
+				}
+				page.innerHTML = '<a class="page-link " onclick="questionPaging('+i+')" href="#">'+i+'</a>'
+				paging.append(page);
+			}
+			let next = document.createElement("li");
+			next.className = "page-item active";
+			
+			if(result.maxPage < 2 || result.maxPage === result.page){
+				next.className = "page-item disabled";
+			}
+			
+			next.innerHTML = '<a class="page-link" onclick="questionPaging('+(result.page+1)+')" href="#">Next</a>'
+			paging.append(next);
+			
+		}
+		
+	</script>
 
 	<!-- 문의 스크립트 -->
 	<script type="text/javascript">
@@ -162,6 +240,86 @@
 			paging.append(next);
 		}
 	</script>
+	<!-- 문의 페이징 -->
+	<script type="text/javascript">
+		function questionPaging(page){
+			let url = '/admin/question/findpage/'+page;
+			fetch(url, {
+				
+					method:"GET",
+					dataType: "json",
+							
+				})
+				.then(function(res){					
+					return res.json();
+				}).then(function(result){
+					console.log(result)
+					questionPagePrint(result);					
+				})	
+		}
+		function questionPagePrint(result){
+			let content = document.querySelector('.content');
+			content.className = 'content border border-danger col-sm-9';
+			content.innerHTML = '<div class="list"><h1 class="text-center text-danger">알림목록</h1><ul class="list-group"></ul><ul class="pagination m-5 justify-content-center"></ul></div>';
+
+			let create = document.createElement("div");
+			create.className = 'question-write';
+			create.innerHTML = '<input class="question-title form-control-inline" type="text" name="title" placeholder="제목" required/><input class="form-control-inline question-content" type="text" name="content" placeholder="본문" required/><button class="btn btn-outline-danger col-sm-8" onclick="questionWrite()">작성</button>';
+			content.append(create);
+			
+			let list = document.querySelector('.list-group');
+			let paging = document.querySelector('.pagination');
+			
+			
+			for(f in result.list){
+				item = document.createElement("li");
+				item.className = "list-group-item list-group-item-action";
+				item.innerHTML = '알림 번호 : '+result.list[f].id+' 알림 제목 : '+result.list[f].title+' 본문 : '+result.list[f].content;
+				list.append(item);
+			}
+			
+		
+			if(result.maxPage === 0){
+				item = document.createElement("h1");
+				item.className = "text-center text-danger";
+				item.innerHTML = '작성된 알림이 없습니다.';
+				list.append(item);
+			}
+			
+			let prev = document.createElement("li");
+			
+			if(result.page === 1){
+				prev.className = "page-item disabled";
+			}else{
+				prev.className = "page-item ";
+			}
+			prev.innerHTML = '<a class="page-link" onclick="questionPaging('+(result.page-1)+')" href="#">Previous</a>'
+			paging.append(prev);
+	
+			
+				
+			for(i=1; i<result.maxPage+1; i++){
+				let page = document.createElement("li");
+				page.className = "page-item";
+				if(i === result.page){
+					page.className = "page-item active";
+				}
+				page.innerHTML = '<a class="page-link " onclick="questionPaging('+i+')" href="#">'+i+'</a>'
+				paging.append(page);
+			}
+			let next = document.createElement("li");
+			next.className = "page-item active";
+			
+			if(result.maxPage < 2 || result.maxPage === result.page){
+				next.className = "page-item disabled";
+			}
+			
+			next.innerHTML = '<a class="page-link" onclick="questionPaging('+(result.page+1)+')" href="#">Next</a>'
+			paging.append(next);
+			
+		}
+		
+	</script>
 	<!-- 알람 스크립트 -->
 
 	<script type="text/javascript">
@@ -182,7 +340,7 @@
 			<c:forEach var="item" items="${noticelist.list}">
 			item = document.createElement("li");
 			item.className = "list-group-item list-group-item-action";
-			item.innerHTML = '알림글 제목 : ${item.title} 본문 : ${item.content}';
+			item.innerHTML = '알림 번호 : ${item.id} 알림글 제목 : ${item.title} 본문 : ${item.content}';
 			list.append(item);
 			</c:forEach>
 		
@@ -219,7 +377,8 @@
 			
 			}
 		</script>
-		<script type="text/javascript">
+	<!-- 알림 작성 -->
+	<script type="text/javascript">
 		function noticeWrite(){
 			let url = '/admin/notice/save';
 			let title = document.querySelector('.notice-title');
@@ -236,13 +395,93 @@
 				
 				}).then(function(res){
 					
-					console.log('res');
+					
 					notice();
 					})
 					
 			}
 	</script>
+	<!-- 알림 페이징 -->
+	<script type="text/javascript">
+		function noticePaging(page){
+			let url = '/admin/notice/findpage/'+page;
+			fetch(url, {
+				
+					method:"GET",
+					dataType: "json",
+							
+				})
+				.then(function(res){					
+					return res.json();
+				}).then(function(result){
+					console.log(result)
+					noticePagePrint(result);					
+				})	
+		}
+		function noticePagePrint(result){
+			let content = document.querySelector('.content');
+			content.className = 'content border border-danger col-sm-9';
+			content.innerHTML = '<div class="list"><h1 class="text-center text-danger">알림목록</h1><ul class="list-group"></ul><ul class="pagination m-5 justify-content-center"></ul></div>';
+
+			let create = document.createElement("div");
+			create.className = 'notice-write';
+			create.innerHTML = '<input class="notice-title form-control-inline" type="text" name="title" placeholder="제목" required/><input class="form-control-inline notice-content" type="text" name="content" placeholder="본문" required/><button class="btn btn-outline-danger col-sm-8" onclick="noticeWrite()">작성</button>';
+			content.append(create);
+			
+			let list = document.querySelector('.list-group');
+			let paging = document.querySelector('.pagination');
+			
+			
+			for(f in result.list){
+				item = document.createElement("li");
+				item.className = "list-group-item list-group-item-action";
+				item.innerHTML = '알림 번호 : '+result.list[f].id+' 알림 제목 : '+result.list[f].title+' 본문 : '+result.list[f].content;
+				list.append(item);
+			}
+			
+		
+			if(result.maxPage === 0){
+				item = document.createElement("h1");
+				item.className = "text-center text-danger";
+				item.innerHTML = '작성된 알림이 없습니다.';
+				list.append(item);
+			}
+			
+			let prev = document.createElement("li");
+			
+			if(result.page === 1){
+				prev.className = "page-item disabled";
+			}else{
+				prev.className = "page-item ";
+			}
+			prev.innerHTML = '<a class="page-link" onclick="noticePaging('+(result.page-1)+')" href="#">Previous</a>'
+			paging.append(prev);
 	
+			
+				
+			for(i=1; i<result.maxPage+1; i++){
+				let page = document.createElement("li");
+				page.className = "page-item";
+				if(i === result.page){
+					page.className = "page-item active";
+				}
+				page.innerHTML = '<a class="page-link " onclick="noticePaging('+i+')" href="#">'+i+'</a>'
+				paging.append(page);
+			}
+			let next = document.createElement("li");
+			next.className = "page-item active";
+			
+			if(result.maxPage < 2 || result.maxPage === result.page){
+				next.className = "page-item disabled";
+			}
+			
+			next.innerHTML = '<a class="page-link" onclick="noticePaging('+(result.page+1)+')" href="#">Next</a>'
+			paging.append(next);
+			
+		}
+		
+	</script>
+
 	<!-- 메인웹페이지 스크립트 -->
 	<script type="text/javascript">
 		function page() {

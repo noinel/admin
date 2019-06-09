@@ -12,14 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.around.admin.model.Board;
 import com.around.admin.model.Notice;
 import com.around.admin.model.PagingListDTO;
 import com.around.admin.model.Question;
-import com.around.admin.model.Report;
 import com.around.admin.repository.BoardRepository;
 import com.around.admin.repository.HeartRepository;
 import com.around.admin.repository.NoticeRepository;
@@ -94,8 +92,8 @@ public class AdminController {
 	}
 	
 
-	@GetMapping("/report/find")
-	public @ResponseBody PagingListDTO<Board> reportFind(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+	@GetMapping("/report/findpage/{page}")
+	public @ResponseBody PagingListDTO<Board> reportFind(@PathVariable int page) {
 		PagingListDTO<Board> pageReports =new PagingListDTO<Board>();
 		
 		List<Integer> reportList = reportRepository.findReportList();
@@ -112,12 +110,11 @@ public class AdminController {
 			boards.add(board);
 		}
 		pageReports = MyUtils.paging(page, boards);
-		model.addAttribute("reportList", boards);
 		return pageReports;
 	}
 
-	@GetMapping("/question/findall")
-	public @ResponseBody PagingListDTO<Question> questionFind(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+	@GetMapping("/question/findpage/{page}")
+	public @ResponseBody PagingListDTO<Question> questionFind(@PathVariable int page) {
 
 		PagingListDTO<Question> pageQuestions =new PagingListDTO<Question>();
 
@@ -127,7 +124,7 @@ public class AdminController {
 	}
 
 	@PostMapping("/notice/save")
-	public@ResponseBody Notice save(@RequestBody Notice notice) {
+	public @ResponseBody Notice save(@RequestBody Notice notice) {
 		Notice result = null;
 		if(!(notice.getTitle() == "" || notice.getContent() == "")) {
 		
@@ -136,11 +133,12 @@ public class AdminController {
 		return result; 
 	}
 
-	@GetMapping("/notice/findall")
-	public PagingListDTO<Notice> findAll(@RequestParam(value = "page", defaultValue = "1") int page) {
-		PagingListDTO<Notice> pageNotices =new PagingListDTO<Notice>();
+	@GetMapping("/notice/findpage/{page}")
+	public @ResponseBody PagingListDTO<Notice> findAll(@PathVariable int page) {
+		
 		List<Notice> notices = noticeRepository.findAll();
-		pageNotices = MyUtils.paging(page, notices);
+		PagingListDTO<Notice> pageNotices = MyUtils.paging(page, notices);
+		System.out.println("notice");
 		return pageNotices;
 	}
 
