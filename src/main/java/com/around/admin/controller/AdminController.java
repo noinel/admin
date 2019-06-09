@@ -5,10 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.around.admin.model.Board;
 import com.around.admin.model.Notice;
 import com.around.admin.model.Question;
-import com.around.admin.model.Report;
 import com.around.admin.repository.BoardRepository;
 import com.around.admin.repository.HeartRepository;
 import com.around.admin.repository.NoticeRepository;
@@ -30,7 +25,6 @@ import com.around.admin.repository.QuestionRepository;
 import com.around.admin.repository.ReportRepository;
 import com.around.admin.service.BoardService;
 import com.around.admin.util.MyUtils;
-import com.cos.costagram.model.Image;
 
 @Controller
 @RequestMapping("/admin")

@@ -1,7 +1,6 @@
 package com.around.admin.service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.around.admin.model.Board;
 import com.around.admin.repository.BoardRepository;
 import com.around.admin.repository.HeartRepository;
-import com.cos.costagram.model.Image;
 
 @Service
 public class BoardService {

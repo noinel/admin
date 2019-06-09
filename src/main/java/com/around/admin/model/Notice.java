@@ -13,7 +13,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Notice {
+public class Notice implements Comparable<Notice>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -26,4 +26,16 @@ public class Notice {
 	private String title;
 	
 	private String content;
+
+	@Override
+	public int compareTo(Notice board) {
+			long time1 = Integer.parseInt(this.createDate.toString().replaceAll("-", ""));
+			long time2 = Integer.parseInt(board.getCreateDate().toString().replaceAll("-", ""));
+			if(time1 < time2) {
+				return -1;
+			}else if(time1 > time2) {
+				return 1;
+			}
+			return 0;
+		}
 }

@@ -19,7 +19,6 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.cos.costagram.model.Image;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
