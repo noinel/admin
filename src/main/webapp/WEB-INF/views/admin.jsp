@@ -58,33 +58,7 @@
 			</ul>
 
 			<div class="mb-5 content border text-align col-sm-9">
-				<div class="list">
-					<h1 class="text-center text-primary">제목을 적을 수 있는 공간</h1>
-					<ul class="list-group">
-						<li class="list-group-item list-group-item-action">Success
-							item</li>
-						<li class="list-group-item list-group-item-action ">Primary
-							item</li>
-						<li class="list-group-item list-group-item-action">Info item</li>
-						<li class="list-group-item list-group-item-action ">Primary
-							item</li>
-						<li class="list-group-item list-group-item-action">Danger
-							item</li>
-						<li class="list-group-item list-group-item-action ">Primary
-							item</li>
-						<li class="list-group-item list-group-item-action">Dark item</li>
-						<li class="list-group-item list-group-item-action ">Primary</li>
-						<li class="list-group-item list-group-item-action">Dark item</li>
-						<li class="list-group-item list-group-item-action ">Primary</li>
-					</ul>
-					<ul class=" pagination justify-content-center ">
-						<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">Next</a></li>
-					</ul>
-				</div>
+				
 			</div>
 		</div>
 	</div>
@@ -124,10 +98,10 @@
 			page.innerHTML = '<a class="page-link " onclick="reportPaging(1)" href="#">1</a>'
 			paging.append(page);
 				
-				for(i=1; i<${reportlist.maxPage} ; i++){
+				for(i=2; i<${reportlist.maxPage}+1 ; i++){
 					let page = document.createElement("li");
 					page.className = "page-item";
-					page.innerHTML = '<a class="page-link " onclick="reportPaging('+i+1+')" href="#">'+i+1+'</a>'
+					page.innerHTML = '<a class="page-link " onclick="reportPaging('+i+')" href="#">'+i+'</a>'
 					paging.append(page);
 				}
 				let next = document.createElement("li");
@@ -173,10 +147,10 @@
 			page.innerHTML = '<a class="page-link " onclick="questionPaging(1)" href="#">1</a>'
 			paging.append(page);
 				
-			for(i=1; i<${reportlist.maxPage}; i++){
+			for(i=2; i<${questionlist.maxPage}+1; i++){
 				let page = document.createElement("li");
 				page.className = "page-item";
-				page.innerHTML = '<a class="page-link " onclick="questionPaging('+i+1+')" href="#">'+i+1+'</a>'
+				page.innerHTML = '<a class="page-link " onclick="questionPaging('+i+')" href="#">'+i+'</a>'
 				paging.append(page);
 			}
 			let next = document.createElement("li");
@@ -198,7 +172,7 @@
 
 			let create = document.createElement("div");
 			create.className = 'notice-write';
-			create.innerHTML = '<input class="notice-title form-control-inline" type="text" name="title" placeholder="제목" required/><input class="form-control-inline notice-content" type="text" name="content" placeholder="본문" required/><button class="btn btn-outline-danger col-sm-4" onclick="noticeWrite()">작성</button>';
+			create.innerHTML = '<input class="notice-title form-control-inline" type="text" name="title" placeholder="제목" required/><input class="form-control-inline notice-content" type="text" name="content" placeholder="본문" required/><button class="btn btn-outline-danger col-sm-8" onclick="noticeWrite()">작성</button>';
 			content.append(create);
 			
 			let list = document.querySelector('.list-group');
@@ -229,10 +203,10 @@
 			page.innerHTML = '<a class="page-link " onclick="noticePaging(1)" href="#">1</a>'
 			paging.append(page);
 				
-			for(i=1; i<${reportlist.maxPage}; i++){
+			for(i=2; i<${noticelist.maxPage}+1; i++){
 				let page = document.createElement("li");
 				page.className = "page-item";
-				page.innerHTML = '<a class="page-link " onclick="noticePaging('+i+1+')" href="#">'+i+1+'</a>'
+				page.innerHTML = '<a class="page-link " onclick="noticePaging('+i+')" href="#">'+i+'</a>'
 				paging.append(page);
 			}
 			let next = document.createElement("li");
@@ -268,7 +242,7 @@
 					
 			}
 	</script>
-
+	
 	<!-- 메인웹페이지 스크립트 -->
 	<script type="text/javascript">
 		function page() {

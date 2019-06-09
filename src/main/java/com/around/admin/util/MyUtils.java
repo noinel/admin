@@ -34,6 +34,8 @@ public class MyUtils {
 		pageList.setList(list);
 		pageList.setMaxPage(maxPage);
 		pageList.setPage(page);
+		System.out.println("m:"+maxPage);
+		System.out.println(page);
 		return pageList;
 	}
 
