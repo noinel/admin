@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.around.admin.model.Board;
@@ -24,6 +29,8 @@ import com.around.admin.repository.NoticeRepository;
 import com.around.admin.repository.QuestionRepository;
 import com.around.admin.repository.ReportRepository;
 import com.around.admin.service.BoardService;
+import com.around.admin.util.MyUtils;
+import com.cos.costagram.model.Image;
 
 @Controller
 @RequestMapping("/admin")
@@ -51,9 +58,10 @@ public class AdminController {
 		model.addAttribute("webpagelist", webpageList);
 		return "admin";
 	}
+	
 
 	@GetMapping("/report/find")
-	public @ResponseBody List<Board> reportFind(Model model) {
+	public @ResponseBody List<Board> reportFind(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
 		List<Integer> reportList = reportRepository.findReportList();
 		List<Board> boards = new ArrayList<Board>();
 		for(int i: reportList) {
@@ -67,13 +75,15 @@ public class AdminController {
 			}
 			boards.add(board);
 		}
+		boards = MyUtils.paging(page, boards);
 		model.addAttribute("reportList", boards);
 		return boards;
 	}
 
 	@GetMapping("/question/findall")
-	public @ResponseBody List<Question> questionFind(Model model) {
+	public @ResponseBody List<Question> questionFind(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
 		List<Question> questions = questionRepository.findAll();
+		questions = MyUtils.paging(page, questions);
 		return questions;
 	}
 
@@ -83,8 +93,10 @@ public class AdminController {
 	}
 
 	@GetMapping("/notice/findall")
-	public List<Notice> findAll() {
-		return noticeRepository.findAll();
+	public List<Notice> findAll(@RequestParam(value = "page", defaultValue = "1") int page) {
+		List<Notice> notices = noticeRepository.findAll();
+		notices = MyUtils.paging(page, notices);
+		return notices;
 	}
 
 	@GetMapping("/notice/findby/{num}")

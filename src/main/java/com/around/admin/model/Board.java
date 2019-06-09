@@ -19,6 +19,7 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.cos.costagram.model.Image;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
@@ -26,7 +27,7 @@ import lombok.Data;
 @Data
 @Entity
 //@JsonIdentityInfo(generator =  ObjectIdGenerators.IntSequenceGenerator.class)
-public class Board {
+public class Board implements Comparable<Board>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int boardNum;
@@ -75,4 +76,16 @@ public class Board {
 	
 	@Transient
 	private int reportCount;
+	
+	@Override
+	public int compareTo(Board board) {
+			long time1 = Integer.parseInt(this.boardCreateDate.toString().replaceAll("-", ""));
+			long time2 = Integer.parseInt(board.getBoardCreateDate().toString().replaceAll("-", ""));
+			if(time1 < time2) {
+				return -1;
+			}else if(time1 > time2) {
+				return 1;
+			}
+			return 0;
+		}
 }

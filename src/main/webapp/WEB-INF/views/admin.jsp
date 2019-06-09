@@ -54,8 +54,9 @@
 					</div>
 				</li>
 			</ul>
-			<div class="mb-5 content border  col-sm-9">
+			<div class="mb-5 content border text-align col-sm-9">
 				<div>
+					<h1 class="text-center text-primary">제목을 적을 수 있는 공간</h1>
 					<ul class="list-group">
 						<li class="list-group-item list-group-item-action">Success
 							item</li>

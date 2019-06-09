@@ -17,7 +17,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Question {
+public class Question implements Comparable<Question>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -37,4 +37,16 @@ public class Question {
 	private String title;
 	
 	private String content;
+	
+	@Override
+	public int compareTo(Question board) {
+			long time1 = Integer.parseInt(this.createDate.toString().replaceAll("-", ""));
+			long time2 = Integer.parseInt(board.getCreateDate().toString().replaceAll("-", ""));
+			if(time1 < time2) {
+				return -1;
+			}else if(time1 > time2) {
+				return 1;
+			}
+			return 0;
+		}
 }
