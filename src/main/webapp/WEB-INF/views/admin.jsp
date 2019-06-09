@@ -18,31 +18,33 @@
 
 <title>관리자!</title>
 </head>
-<body>
+<body onload="report()">
 	<div class="jumbotron text-center">
 		<h1>Around 관리자 페이지 입니다.</h1>
 		<p>테스트용 화면 입니다.</p>
 	</div>
 	<div class="container">
 		<div class="pb-5 row">
+	
 
 			<ul id="nav" class="sticky nav flex-column col-sm-3">
 				<li class="nav-item">
 					<button type="button" class="col-sm-12 btn btn-primary"
 						data-toggle="collapse" data-target="#demo1">문의 관리</button>
 					<div id="demo1" class="col-sm-12 collapse btn-group-vertical show">
-						<button type="button" onclick="report()" class=" col-sm-12 btn btn-outline-primary">신고
-							게시글 관리</button>
-						<button type="button" onclick="question()" class=" col-sm-12 btn btn-outline-primary">문의목록
-							관리</button>
+						<button type="button" onclick="report()"
+							class=" col-sm-12 btn btn-outline-primary">신고 게시글 관리</button>
+						<button type="button" onclick="question()"
+							class=" col-sm-12 btn btn-outline-primary">문의목록 관리</button>
 					</div>
 				</li>
+				
 				<li class="nav-item">
 					<button type="button" class="col-sm-12 btn btn-danger"
 						data-toggle="collapse" data-target="#demo2">어플관리</button>
 					<div id="demo2" class="col-sm-12 collapse btn-group-vertical">
-						<button type="button" onclick="notice()" class=" col-sm-12 btn btn-outline-danger">알림
-							발송</button>
+						<button type="button" onclick="notice()"
+							class=" col-sm-12 btn btn-outline-danger">알림 발송</button>
 					</div>
 				</li>
 				<li class="nav-item">
@@ -54,8 +56,9 @@
 					</div>
 				</li>
 			</ul>
+
 			<div class="mb-5 content border text-align col-sm-9">
-				<div>
+				<div class="list">
 					<h1 class="text-center text-primary">제목을 적을 수 있는 공간</h1>
 					<ul class="list-group">
 						<li class="list-group-item list-group-item-action">Success
@@ -74,7 +77,7 @@
 						<li class="list-group-item list-group-item-action">Dark item</li>
 						<li class="list-group-item list-group-item-action ">Primary</li>
 					</ul>
-					<ul class=" pagination justify-content-center">
+					<ul class=" pagination justify-content-center ">
 						<li class="page-item"><a class="page-link" href="#">Previous</a></li>
 						<li class="page-item"><a class="page-link" href="#">1</a></li>
 						<li class="page-item"><a class="page-link" href="#">2</a></li>
@@ -85,27 +88,188 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- 신고 스크립트 -->
 	<script type="text/javascript">
 		function report(){
 			let content = document.querySelector('.content');
 			content.className = 'content border border-primary col-sm-9';
-			//content.innerHTML = '';
+			content.innerHTML = '<div class="list"><h1 class="text-center text-primary">신고목록</h1><ul class="list-group"></ul><ul class="pagination m-5 justify-content-center"></ul></div>';
+			let list = document.querySelector('.list-group');
+			let paging = document.querySelector('.pagination');
+
+			let item;
+			<c:forEach var="item" items="${reportlist.list}">
+				item = document.createElement("li");
+				item.className = "list-group-item list-group-item-action";
+				item.addEventListner("click", boardDetail(${item.boardNum}));
+				item.innerHTML = '게시글 본문 : ${item.boardContent} 신고 카운트 : ${item.reportCount}';
+				list.append(item);
+			</c:forEach>
+			
+			<c:if test="${reportlist.maxPage eq 0}">
+				item = document.createElement("h1");
+				item.className = "text-center text-primary";
+				item.innerHTML = '해당 하는 게시글이 없습니다.';
+				list.append(item);
+			</c:if>
+			
+			let prev = document.createElement("li");
+			prev.className = "page-item disabled";
+			prev.innerHTML = '<a class="page-link" href="#">Previous</a>'
+			paging.append(prev);
+
+			let page = document.createElement("li");
+			page.className = "page-item active";
+			page.innerHTML = '<a class="page-link " onclick="reportPaging(1)" href="#">1</a>'
+			paging.append(page);
+				
+				for(i=1; i<${reportlist.maxPage} ; i++){
+					let page = document.createElement("li");
+					page.className = "page-item";
+					page.innerHTML = '<a class="page-link " onclick="reportPaging('+i+1+')" href="#">'+i+1+'</a>'
+					paging.append(page);
+				}
+				let next = document.createElement("li");
+				next.className = "page-item active";
+				<c:if test="${reportlist.maxPage < 2 }">
+				next.className = "page-item disabled";
+				</c:if>
+				next.innerHTML = '<a class="page-link" onclick="reportPaging(2)" href="#">Next</a>'
+				paging.append(next);
 			}
 	</script>
+
+	<!-- 문의 스크립트 -->
 	<script type="text/javascript">
 		function question(){
 			let content = document.querySelector('.content');
 			content.className = 'content border border-primary col-sm-9';
-			//content.innerHTML = '';
+			content.innerHTML = '<div class="list"><h1 class="text-center text-primary">문의목록</h1><ul class="list-group"></ul><ul class="pagination m-5 justify-content-center"></ul></div>';
+			let list = document.querySelector('.list-group');
+			let paging = document.querySelector('.pagination');
+			let item;
+			<c:forEach var="item" items="${questionlist.list}">
+			item = document.createElement("li");
+			item.className = "list-group-item list-group-item-action";
+			item.innerHTML = '문의글 제목 : ${item.title} 본문 : ${item.content}';
+			list.append(item);
+			</c:forEach>
+		
+			<c:if test="${questionlist.maxPage eq 0}">
+				item = document.createElement("h1");
+				item.className = "text-center text-primary";
+				item.innerHTML = '해당 하는 문의글이 없습니다.';
+				list.append(item);
+			</c:if>
+		
+			let prev = document.createElement("li");
+			prev.className = "page-item disabled";
+			prev.innerHTML = '<a class="page-link" href="#">Previous</a>'
+			paging.append(prev);
+	
+			let page = document.createElement("li");
+			page.className = "page-item active";
+			page.innerHTML = '<a class="page-link " onclick="questionPaging(1)" href="#">1</a>'
+			paging.append(page);
+				
+			for(i=1; i<${reportlist.maxPage}; i++){
+				let page = document.createElement("li");
+				page.className = "page-item";
+				page.innerHTML = '<a class="page-link " onclick="questionPaging('+i+1+')" href="#">'+i+1+'</a>'
+				paging.append(page);
 			}
+			let next = document.createElement("li");
+			next.className = "page-item active";
+			<c:if test="${reportlist.maxPage < 2 }">
+				next.className = "page-item disabled";
+			</c:if>
+			next.innerHTML = '<a class="page-link" onclick="questionPaging(2)" href="#">Next</a>'
+			paging.append(next);
+		}
 	</script>
+	<!-- 알람 스크립트 -->
+
 	<script type="text/javascript">
 		function notice(){
 			let content = document.querySelector('.content');
 			content.className = 'content border border-danger col-sm-9';
-			//content.innerHTML = '';
+			content.innerHTML = '<div class="list"><h1 class="text-center text-danger">알림목록</h1><ul class="list-group"></ul><ul class="pagination m-5 justify-content-center"></ul></div>';
+
+			let create = document.createElement("div");
+			create.className = 'notice-write';
+			create.innerHTML = '<input class="notice-title form-control-inline" type="text" name="title" placeholder="제목" required/><input class="form-control-inline notice-content" type="text" name="content" placeholder="본문" required/><button class="btn btn-outline-danger col-sm-4" onclick="noticeWrite()">작성</button>';
+			content.append(create);
+			
+			let list = document.querySelector('.list-group');
+			let paging = document.querySelector('.pagination');
+			
+			let item;
+			<c:forEach var="item" items="${noticelist.list}">
+			item = document.createElement("li");
+			item.className = "list-group-item list-group-item-action";
+			item.innerHTML = '알림글 제목 : ${item.title} 본문 : ${item.content}';
+			list.append(item);
+			</c:forEach>
+		
+			<c:if test="${noticelist.maxPage eq 0}">
+				item = document.createElement("h1");
+				item.className = "text-center text-danger";
+				item.innerHTML = '작성된 알림이 없습니다.';
+				list.append(item);
+			</c:if>
+		
+			let prev = document.createElement("li");
+			prev.className = "page-item disabled";
+			prev.innerHTML = '<a class="page-link" href="#">Previous</a>'
+			paging.append(prev);
+	
+			let page = document.createElement("li");
+			page.className = "page-item active";
+			page.innerHTML = '<a class="page-link " onclick="noticePaging(1)" href="#">1</a>'
+			paging.append(page);
+				
+			for(i=1; i<${reportlist.maxPage}; i++){
+				let page = document.createElement("li");
+				page.className = "page-item";
+				page.innerHTML = '<a class="page-link " onclick="noticePaging('+i+1+')" href="#">'+i+1+'</a>'
+				paging.append(page);
+			}
+			let next = document.createElement("li");
+			next.className = "page-item active";
+			<c:if test="${reportlist.maxPage < 2 }">
+				next.className = "page-item disabled";
+			</c:if>
+			next.innerHTML = '<a class="page-link" onclick="noticePaging(2) href="#">Next</a>'
+			paging.append(next);
+			
+			}
+		</script>
+		<script type="text/javascript">
+		function noticeWrite(){
+			let url = '/admin/notice/save';
+			let title = document.querySelector('.notice-title');
+			let titleValue = title.value;
+			let content = document.querySelector('.notice-content');
+			let contentValue = content.value;
+			console.log(titleValue);
+			console.log(contentValue);
+			fetch(url, {
+				method:"POST",
+				dataType: "json",
+				headers: { "Content-Type" : "application/json" },
+				body: JSON.stringify({title : titleValue, content : contentValue}),
+				
+				}).then(function(res){
+					
+					console.log('res');
+					notice();
+					})
+					
 			}
 	</script>
+
+	<!-- 메인웹페이지 스크립트 -->
 	<script type="text/javascript">
 		function page() {
 			let content = document.querySelector('.content');

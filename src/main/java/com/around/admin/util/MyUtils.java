@@ -1,10 +1,13 @@
 package com.around.admin.util;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.around.admin.model.PagingListDTO;
+
 public class MyUtils {
-	public static <E extends Comparable<? super E>> List<E> paging(int page, List<E>  list  ){
+	public static <E extends Comparable<? super E>> PagingListDTO<E> paging(int page, List<E>  list  ){
 		int maxPage = 0;
 		int start = (page - 1) * 10;
 		int end = page * 10;
@@ -27,7 +30,11 @@ public class MyUtils {
 		if(list.size() > 10) {
 		list = list.subList(start, end); // 0 3
 		}
-		return list;
+		PagingListDTO<E> pageList = new PagingListDTO<E>();
+		pageList.setList(list);
+		pageList.setMaxPage(maxPage);
+		pageList.setPage(page);
+		return pageList;
 	}
 
 }

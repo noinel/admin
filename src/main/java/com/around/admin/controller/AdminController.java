@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.around.admin.model.Board;
 import com.around.admin.model.Notice;
+import com.around.admin.model.PagingListDTO;
 import com.around.admin.model.Question;
+import com.around.admin.model.Report;
 import com.around.admin.repository.BoardRepository;
 import com.around.admin.repository.HeartRepository;
 import com.around.admin.repository.NoticeRepository;
@@ -48,14 +50,12 @@ public class AdminController {
 	@GetMapping("/")
 	public String home(Model model) {
 		
-		List<Board> webpageList =boardService.webPageList(1);
-		model.addAttribute("webpagelist", webpageList);
-		return "admin";
-	}
-	
-
-	@GetMapping("/report/find")
-	public @ResponseBody List<Board> reportFind(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+		PagingListDTO<Board> pageReports =new PagingListDTO<Board>();
+		PagingListDTO<Question> pageQuestions =new PagingListDTO<Question>();
+		PagingListDTO<Notice> pageNotices =new PagingListDTO<Notice>();
+		
+		
+		
 		List<Integer> reportList = reportRepository.findReportList();
 		List<Board> boards = new ArrayList<Board>();
 		for(int i: reportList) {
@@ -69,28 +69,79 @@ public class AdminController {
 			}
 			boards.add(board);
 		}
-		boards = MyUtils.paging(page, boards);
+		
+		pageReports = MyUtils.paging(1, boards);
+		
+		
+		
+		List<Notice> notices = noticeRepository.findAll();
+		pageNotices = MyUtils.paging(1, notices);
+		
+		List<Question> questions = questionRepository.findAll();
+		pageQuestions = MyUtils.paging(1, questions);
+		
+		List<Board> webpageList =boardService.webPageList(1);
+		
+		model.addAttribute("noticelist", pageNotices);
+		model.addAttribute("reportlist", pageReports);
+		model.addAttribute("questionlist", pageQuestions);
+		model.addAttribute("webpagelist", webpageList);
+//		System.out.println("1:"+pageNotices.getMaxPage());
+//		System.out.println("2:"+pageReports.getMaxPage());
+//		System.out.println("3:"+pageQuestions.getMaxPage());
+		
+		return "admin";
+	}
+	
+
+	@GetMapping("/report/find")
+	public @ResponseBody PagingListDTO<Board> reportFind(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+		PagingListDTO<Board> pageReports =new PagingListDTO<Board>();
+		
+		List<Integer> reportList = reportRepository.findReportList();
+		List<Board> boards = new ArrayList<Board>();
+		for(int i: reportList) {
+			
+			Optional<Board> boardO = boardRepository.findById(i);
+			Board board = new Board();
+			if(boardO.isPresent()) {
+				board = boardO.get();
+				int reportCount= reportRepository.findReportCount(i);
+				board.setReportCount(reportCount);
+			}
+			boards.add(board);
+		}
+		pageReports = MyUtils.paging(page, boards);
 		model.addAttribute("reportList", boards);
-		return boards;
+		return pageReports;
 	}
 
 	@GetMapping("/question/findall")
-	public @ResponseBody List<Question> questionFind(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+	public @ResponseBody PagingListDTO<Question> questionFind(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+
+		PagingListDTO<Question> pageQuestions =new PagingListDTO<Question>();
+
 		List<Question> questions = questionRepository.findAll();
-		questions = MyUtils.paging(page, questions);
-		return questions;
+		pageQuestions = MyUtils.paging(page, questions);
+		return pageQuestions;
 	}
 
 	@PostMapping("/notice/save")
-	public Notice save(@RequestBody Notice notice) {
-		return noticeRepository.save(notice);
+	public@ResponseBody Notice save(@RequestBody Notice notice) {
+		Notice result = null;
+		if(!(notice.getTitle() == "" || notice.getContent() == "")) {
+		
+		result = noticeRepository.save(notice);
+		}
+		return result; 
 	}
 
 	@GetMapping("/notice/findall")
-	public List<Notice> findAll(@RequestParam(value = "page", defaultValue = "1") int page) {
+	public PagingListDTO<Notice> findAll(@RequestParam(value = "page", defaultValue = "1") int page) {
+		PagingListDTO<Notice> pageNotices =new PagingListDTO<Notice>();
 		List<Notice> notices = noticeRepository.findAll();
-		notices = MyUtils.paging(page, notices);
-		return notices;
+		pageNotices = MyUtils.paging(page, notices);
+		return pageNotices;
 	}
 
 	@GetMapping("/notice/findby/{num}")

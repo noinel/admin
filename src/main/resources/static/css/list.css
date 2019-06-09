@@ -7,3 +7,28 @@
 	color: #721c24;
 	background-color: #f5c6cb;
 }
+
+.border-primary .pagination>.page-item .page-link
+{
+  border: 1px solid #004085;
+}
+
+
+.border-danger .pagination>.page-item .page-link
+{
+  border: 1px solid #721c24;
+}
+
+
+.border-danger .page-item.active .page-link{
+	background-color: #F5C6CB;
+	border-color: #F5C6CB;
+	color: #fff;
+}
+.notice-write{
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+}
+.notice-title , .notice-content{
+	border: 1px solid #721c24;
+}
