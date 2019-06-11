@@ -78,7 +78,7 @@
 				item.innerHTML = '게시글 본문 : ${item.boardContent} 신고 카운트 : ${item.reportCount}';
 				list.append(item);
 			</c:forEach>
-			
+			console.log(${reportlist.maxPage})
 			<c:if test="${reportlist.maxPage eq 0}">
 				item = document.createElement("h1");
 				item.className = "text-center text-primary";
@@ -396,7 +396,7 @@
 				}).then(function(res){
 					
 					
-					notice();
+					noticePaging(1);
 					})
 					
 			}
@@ -431,9 +431,9 @@
 			let list = document.querySelector('.list-group');
 			let paging = document.querySelector('.pagination');
 			
-			
+		
 			for(f in result.list){
-				item = document.createElement("li");
+				let item = document.createElement("li");
 				item.className = "list-group-item list-group-item-action";
 				item.innerHTML = '알림 번호 : '+result.list[f].id+' 알림 제목 : '+result.list[f].title+' 본문 : '+result.list[f].content;
 				list.append(item);
@@ -441,7 +441,7 @@
 			
 		
 			if(result.maxPage === 0){
-				item = document.createElement("h1");
+				let item = document.createElement("h1");
 				item.className = "text-center text-danger";
 				item.innerHTML = '작성된 알림이 없습니다.';
 				list.append(item);

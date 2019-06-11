@@ -84,10 +84,7 @@ public class AdminController {
 		model.addAttribute("reportlist", pageReports);
 		model.addAttribute("questionlist", pageQuestions);
 		model.addAttribute("webpagelist", webpageList);
-//		System.out.println("1:"+pageNotices.getMaxPage());
-//		System.out.println("2:"+pageReports.getMaxPage());
-//		System.out.println("3:"+pageQuestions.getMaxPage());
-		
+
 		return "admin";
 	}
 	

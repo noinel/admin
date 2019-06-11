@@ -28,14 +28,13 @@ public class Notice implements Comparable<Notice>{
 	private String content;
 
 	@Override
-	public int compareTo(Notice board) {
-			long time1 = Integer.parseInt(this.createDate.toString().replaceAll("-", ""));
-			long time2 = Integer.parseInt(board.getCreateDate().toString().replaceAll("-", ""));
-			if(time1 < time2) {
-				return -1;
-			}else if(time1 > time2) {
-				return 1;
-			}
-			return 0;
+	public int compareTo(Notice notice) {
+		int count1 = this.id;
+		int count2 = notice.getId();
+		if(count1 < count2) {
+			return 1;
+		}else if(count1 > count2) {
+			return -1;
 		}
-}
+		return 0;
+	}}
